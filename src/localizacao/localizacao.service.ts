@@ -5,7 +5,7 @@ import { UpdateLocalizacaoDto } from './dto/update-localizacao.dto';
 @Injectable()
 export class LocalizacaoService {
   create(createLocalizacaoDto: CreateLocalizacaoDto) {
-    return 'This action adds a new localizacao';
+    return createLocalizacaoDto;
   }
 
   findAll() {

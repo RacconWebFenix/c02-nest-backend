@@ -28,7 +28,9 @@ export class PersonagemService {
       id: this.personagens.length + 1,
       ...createPersonagemDto,
     };
+
     this.personagens.push(personagem);
+
     return personagem;
   }
 
@@ -37,23 +39,41 @@ export class PersonagemService {
   }
 
   findOne(id: number) {
-    const pers = this.personagens.filter((p) => p.id === id);
-    return pers;
+    return this.personagens.find((personagem) => personagem.id === id);
   }
 
   update(id: number, updatePersonagemDto: UpdatePersonagemDto) {
-    const pers = this.personagens.filter((p) => p.id === id);
-    const newPers = {
-      nome: updatePersonagemDto.nome,
-      imagemUrl: updatePersonagemDto.imagemUrl,
+    const index = this.personagens.findIndex(
+      (personagem) => personagem.id === id,
+    );
+
+    // Jeito 1
+    // const personagemAtual = this.personagens[index];
+
+    // const novoPersonagem = {
+    //   ...personagemAtual,
+    //   ...updatePersonagemDto,
+    // };
+
+    // this.personagens[index] = novoPersonagem;
+
+    // Jeito 2
+    this.personagens[index] = {
+      ...this.personagens[index],
+      ...updatePersonagemDto,
     };
-    pers[0].nome = newPers.nome;
-    pers[0].imagemUrl = newPers.imagemUrl;
-    return pers;
+
+    return this.personagens[index];
   }
 
   remove(id: number) {
-    this.personagens = this.personagens.filter((p) => p.id !== id);
-    return this.personagens;
+    const index = this.personagens.findIndex(
+      (personagem) => personagem.id === id,
+    );
+
+    // delete this.personagens[index];
+    // this.personagens = this.personagens.filter((p) => p.id !== id);
+
+    this.personagens.splice(index, 1);
   }
 }
