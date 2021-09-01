@@ -4,9 +4,9 @@ import { UpdatePersonagemDto } from './dto/update-personagem.dto';
 export declare class PersonagemController {
     private readonly personagemService;
     constructor(personagemService: PersonagemService);
-    create(createPersonagemDto: CreatePersonagemDto): import("./entities/personagem.entity").Personagem;
-    findAll(): import("./entities/personagem.entity").Personagem[];
-    findOne(id: string): import("./entities/personagem.entity").Personagem;
-    update(id: string, updatePersonagemDto: UpdatePersonagemDto): import("./entities/personagem.entity").Personagem;
-    remove(id: string): void;
+    create(createPersonagemDto: CreatePersonagemDto): Promise<import(".prisma/client").Personagem>;
+    findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Personagem[]>;
+    findOne(id: string): Promise<import(".prisma/client").Personagem>;
+    update(id: string, updatePersonagemDto: UpdatePersonagemDto): Promise<import(".prisma/client").Personagem>;
+    remove(id: string): Promise<import(".prisma/client").Personagem>;
 }

@@ -5,11 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PersonagemService = void 0;
 const common_1 = require("@nestjs/common");
+const prisma_service_1 = require("../prisma/prisma.service");
 let PersonagemService = class PersonagemService {
-    constructor() {
+    constructor(prisma) {
+        this.prisma = prisma;
         this.personagens = [
             {
                 id: 1,
@@ -28,29 +33,44 @@ let PersonagemService = class PersonagemService {
             },
         ];
     }
-    create(createPersonagemDto) {
-        const personagem = Object.assign({ id: this.personagens.length + 1 }, createPersonagemDto);
-        this.personagens.push(personagem);
-        return personagem;
+    async create(createPersonagemDto) {
+        const personagem = Object.assign({}, createPersonagemDto);
+        return await this.prisma.personagem.create({
+            data: personagem,
+        });
     }
     findAll() {
-        return this.personagens;
+        return this.prisma.personagem.findMany();
     }
-    findOne(id) {
-        return this.personagens.find((personagem) => personagem.id === id);
+    async findOne(id) {
+        const personagem = await this.prisma.personagem.findUnique({
+            where: {
+                id: id,
+            },
+        });
+        return personagem;
     }
-    update(id, updatePersonagemDto) {
-        const index = this.personagens.findIndex((personagem) => personagem.id === id);
-        this.personagens[index] = Object.assign(Object.assign({}, this.personagens[index]), updatePersonagemDto);
-        return this.personagens[index];
+    async update(id, updatePersonagemDto) {
+        const updatePers = await this.prisma.personagem.update({
+            where: {
+                id: id,
+            },
+            data: Object.assign({}, updatePersonagemDto),
+        });
+        return updatePers;
     }
-    remove(id) {
-        const index = this.personagens.findIndex((personagem) => personagem.id === id);
-        this.personagens.splice(index, 1);
+    async remove(id) {
+        const deletePers = await this.prisma.personagem.delete({
+            where: {
+                id: id,
+            },
+        });
+        return deletePers;
     }
 };
 PersonagemService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], PersonagemService);
 exports.PersonagemService = PersonagemService;
 //# sourceMappingURL=personagem.service.js.map
