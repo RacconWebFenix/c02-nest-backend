@@ -26,20 +26,20 @@ export class LocalizacaoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.localizacaoService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.localizacaoService.findOne(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateLocalizacaoDto: UpdateLocalizacaoDto,
   ) {
-    return this.localizacaoService.update(+id, updateLocalizacaoDto);
+    return this.localizacaoService.update(id, updateLocalizacaoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.localizacaoService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.localizacaoService.remove(id);
   }
 }
