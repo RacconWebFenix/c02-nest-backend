@@ -15,57 +15,26 @@ const prisma_service_1 = require("../prisma/prisma.service");
 let PersonagemService = class PersonagemService {
     constructor(prisma) {
         this.prisma = prisma;
-        this.personagens = [
-            {
-                id: 1,
-                nome: 'Rick Sanchez',
-                imagemUrl: 'http://imagem.com',
-            },
-            {
-                id: 2,
-                nome: 'Morthy Smith',
-                imagemUrl: 'http://imagem.com',
-            },
-            {
-                id: 3,
-                nome: 'Summer Smith',
-                imagemUrl: 'http://imagem.com',
-            },
-        ];
     }
-    async create(createPersonagemDto) {
-        const personagem = Object.assign({}, createPersonagemDto);
-        return await this.prisma.personagem.create({
-            data: personagem,
+    create(createPersonagemDto) {
+        return this.prisma.personagem.create({
+            data: createPersonagemDto,
         });
     }
     findAll() {
         return this.prisma.personagem.findMany();
     }
-    async findOne(id) {
-        const personagem = await this.prisma.personagem.findUnique({
-            where: {
-                id: id,
-            },
-        });
-        return personagem;
+    findOne(id) {
+        return this.prisma.personagem.findUnique({ where: { id } });
     }
-    async update(id, updatePersonagemDto) {
-        const updatePers = await this.prisma.personagem.update({
-            where: {
-                id: id,
-            },
-            data: Object.assign({}, updatePersonagemDto),
+    update(id, updatePersonagemDto) {
+        return this.prisma.personagem.update({
+            where: { id },
+            data: updatePersonagemDto,
         });
-        return updatePers;
     }
-    async remove(id) {
-        const deletePers = await this.prisma.personagem.delete({
-            where: {
-                id: id,
-            },
-        });
-        return deletePers;
+    remove(id) {
+        return this.prisma.personagem.delete({ where: { id } });
     }
 };
 PersonagemService = __decorate([

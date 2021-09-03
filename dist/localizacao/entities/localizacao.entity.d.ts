@@ -3,5 +3,4 @@ export declare class Localizacao extends Personagem {
     id?: number;
     nome: string;
     imagemUrl: string;
-    localizacao: string;
 }
