@@ -28,13 +28,13 @@ let LocalizacaoController = class LocalizacaoController {
         return this.localizacaoService.findAll();
     }
     findOne(id) {
-        return this.localizacaoService.findOne(id);
+        return this.localizacaoService.findOne(+id);
     }
     update(id, updateLocalizacaoDto) {
-        return this.localizacaoService.update(id, updateLocalizacaoDto);
+        return this.localizacaoService.update(+id, updateLocalizacaoDto);
     }
     remove(id) {
-        return this.localizacaoService.remove(id);
+        return this.localizacaoService.remove(+id);
     }
 };
 __decorate([
@@ -54,7 +54,7 @@ __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], LocalizacaoController.prototype, "findOne", null);
 __decorate([
@@ -62,14 +62,14 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_localizacao_dto_1.UpdateLocalizacaoDto]),
+    __metadata("design:paramtypes", [String, update_localizacao_dto_1.UpdateLocalizacaoDto]),
     __metadata("design:returntype", void 0)
 ], LocalizacaoController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], LocalizacaoController.prototype, "remove", null);
 LocalizacaoController = __decorate([

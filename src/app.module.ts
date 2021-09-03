@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PersonagemModule } from './personagem/personagem.module';
-import { LocalizacaoModule } from './localizacao/localizacao.module';
+
 import { PrismaModule } from './prisma/prisma.module';
+import { LocalizacaoModule } from './localizacao/localizacao.module';
 
 @Module({
-  imports: [PersonagemModule, LocalizacaoModule, PrismaModule],
+  imports: [PersonagemModule, PrismaModule, LocalizacaoModule],
   controllers: [AppController],
   providers: [AppService],
 })

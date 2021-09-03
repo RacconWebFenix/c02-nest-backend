@@ -1,6 +1,4 @@
-import { Personagem } from 'src/personagem/entities/personagem.entity';
-export declare class Localizacao extends Personagem {
+export declare class Localizacao {
     id?: number;
     nome: string;
-    imagemUrl: string;
 }

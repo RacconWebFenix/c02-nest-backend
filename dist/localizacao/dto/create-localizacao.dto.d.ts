@@ -1,5 +1,4 @@
-export declare class CreateLocalizacaoDto {
+import { Localizacao } from '../entities/localizacao.entity';
+export declare class CreateLocalizacaoDto implements Localizacao {
     nome: string;
-    imagemUrl: string;
-    localizacao: string;
 }
